@@ -1,0 +1,12 @@
+{
+    "theme": "auto",
+    "registration_enabled": true,
+    "payments_enabled": true,
+    "default_dashboard": "admin",
+    "site_title": "EduTech Pro",
+    "contact_email": "support@edutechpro.com",
+    "maintenance_mode": false,
+    "default_language": "en",
+    "allow_profile_editing": true,
+    "show_announcements": true
+}

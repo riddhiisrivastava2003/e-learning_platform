@@ -1,0 +1,76 @@
+/* Dark Mode Variables and Overrides */
+:root {
+    --bg-primary: #ffffff;
+    --bg-secondary: #f8f9fa;
+    --text-primary: #212529;
+    --text-secondary: #6c757d;
+    --card-bg: #ffffff;
+    --sidebar-bg: #28a745;
+    --sidebar-text: #ffffff;
+    --navbar-bg: #198754;
+}
+[data-theme="dark"] {
+    --bg-primary: #181a1b;
+    --bg-secondary: #23272b;
+    --text-primary: #f1f3f4;
+    --text-secondary: #b0b3b8;
+    --card-bg: #23272b;
+    --sidebar-bg: #1e4d2b;
+    --sidebar-text: #e0e0e0;
+    --navbar-bg: #14532d;
+}
+body {
+    background-color: var(--bg-primary) !important;
+    color: var(--text-primary) !important;
+    transition: background 0.3s, color 0.3s;
+}
+.card, .dashboard-card, .stats-card, .section-header {
+    background-color: var(--card-bg) !important;
+    color: var(--text-primary) !important;
+}
+.sidebar {
+    background-color: var(--sidebar-bg) !important;
+    color: var(--sidebar-text) !important;
+    transition: background 0.3s, color 0.3s;
+}
+.navbar {
+    background-color: var(--navbar-bg) !important;
+}
+.text-muted {
+    color: var(--text-secondary) !important;
+}
+/* General improvements for all themes */
+.sidebar .nav-link {
+    border-radius: 8px;
+    margin: 0.25rem 0;
+    padding: 0.75rem 1.25rem;
+    font-weight: 500;
+    transition: background 0.2s, color 0.2s;
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+}
+.sidebar .nav-link i {
+    min-width: 22px;
+    font-size: 1.1rem;
+    color: #2563eb;
+    transition: color 0.2s;
+}
+.sidebar .nav-link.active,
+.sidebar .nav-link:hover {
+    background: #e0e7ef !important;
+    color: #2563eb !important;
+}
+.sidebar .nav-link.active i,
+.sidebar .nav-link:hover i {
+    color: #1d4ed8 !important;
+}
+.sidebar .text-center {
+    border-bottom: 1px solid #e5e7eb;
+    margin-bottom: 1.5rem;
+    padding-bottom: 1.5rem;
+}
+.sidebar .text-center h6,
+.sidebar .text-center small {
+    color: #2563eb !important;
+} 
