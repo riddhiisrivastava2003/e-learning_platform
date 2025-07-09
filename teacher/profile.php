@@ -48,10 +48,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Teacher Profile</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/teacher-dashboard.css" rel="stylesheet">
 </head>
 <body>
-    <nav class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="dashboard.php">
                 <i class="fas fa-graduation-cap me-2"></i>EduTech Pro
@@ -138,14 +141,33 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 </div>
             </nav>
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 dashboard-main-content">
-                <div class="container mt-5" style="max-width: 600px;">
-                    <a href="dashboard.php" class="btn btn-outline-warning mb-3"><i class="fas fa-arrow-left me-2"></i>Back to Dashboard</a>
-                    <div class="card shadow-lg">
-                        <div class="card-header text-center p-4" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border-radius: 15px 15px 0 0;">
-                            <i class="fas fa-chalkboard-teacher fa-3x text-warning mb-2"></i>
-                            <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($teacher['full_name']); ?>&background=667eea&color=fff&size=128" class="rounded-circle mb-2" alt="Avatar">
-                            <h3 class="fw-bold mb-0 text-white"><?php echo htmlspecialchars($teacher['full_name']); ?></h3>
-                            <small class="text-white-50">Teacher</small>
+                <div class="container-fluid pt-5">
+                    <!-- Page Header -->
+                    <div class="page-header">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h1><i class="fas fa-user-cog me-3"></i>Teacher Profile</h1>
+                                <p class="mb-0">Manage your account settings and personal information</p>
+                            </div>
+                            <div class="col-md-4 text-md-end">
+                                <div class="teacher-stat-card">
+                                    <i class="fas fa-user-shield fa-2x text-warning"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="row justify-content-center">
+                        <div class="col-lg-8">
+                            <div class="teacher-form-card">
+                        <div class="profile-header text-center p-4">
+                            <div class="profile-avatar mb-3">
+                                <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($teacher['full_name']); ?>&background=f59e42&color=fff&size=128&font-size=0.4" class="rounded-circle border-4 border-warning" alt="Avatar">
+                            </div>
+                            <h3 class="fw-bold mb-1 text-white"><?php echo htmlspecialchars($teacher['full_name']); ?></h3>
+                            <p class="text-white-50 mb-0">
+                                <i class="fas fa-chalkboard-teacher me-2"></i>Teacher
+                            </p>
                         </div>
                         <div class="card-body p-4">
                             <?php if ($success): ?><div class="alert alert-success"><?php echo $success; ?></div><?php endif; ?>
@@ -169,7 +191,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                                     <small class="form-text text-muted">Leave blank to keep your current password.</small>
                                 </div>
                                 <div class="d-grid gap-2">
-                                    <button type="submit" class="btn btn-primary btn-lg">Update Profile</button>
+                                    <button type="submit" class="btn btn-warning btn-lg fw-bold teacher-btn">
+                                        <i class="fas fa-save me-2"></i>Update Profile
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -178,5 +202,49 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             </main>
         </div>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add loading animation to form submission
+        document.querySelector('form').addEventListener('submit', function() {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Updating...';
+            submitBtn.disabled = true;
+        });
+        
+        // Add form field animations
+        document.querySelectorAll('.form-control').forEach(field => {
+            field.addEventListener('focus', function() {
+                this.parentElement.classList.add('field-focused');
+            });
+            
+            field.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('field-focused');
+                }
+            });
+        });
+
+        // Mobile sidebar toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(event.target) && !navbarToggler.contains(event.target)) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

@@ -95,7 +95,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <style>
         .register-container {
             min-height: 100vh;
-            background: url('../register.jpg') no-repeat center center fixed;
+            background: url('../uploads/register.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             align-items: center;

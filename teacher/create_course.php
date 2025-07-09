@@ -56,7 +56,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <title><?php echo $editing ? 'Edit' : 'Create'; ?> Course - EduTech Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/teacher-dashboard.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top">
@@ -153,9 +155,23 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         </nav>
         <!-- Main content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 dashboard-main-content">
-            <div class="container mt-5 pt-4">
-                <h2 class="mb-4"><?php echo $editing ? 'Edit' : 'Create'; ?> Course</h2>
-                <div class="card p-4 mb-4">
+            <div class="container-fluid pt-5">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1><i class="fas fa-<?php echo $editing ? 'edit' : 'plus-circle'; ?> me-3"></i><?php echo $editing ? 'Edit' : 'Create'; ?> Course</h1>
+                            <p class="mb-0"><?php echo $editing ? 'Update your course information and settings' : 'Create a new course to share your knowledge with students'; ?></p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="teacher-stat-card">
+                                <i class="fas fa-book-open fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="teacher-form-card">
                     <form method="POST">
                         <div class="mb-3">
                             <label class="form-label">Title</label>
@@ -173,12 +189,64 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                             <input class="form-check-input" type="checkbox" name="is_premium" id="is_premium" value="1" <?php if ($course['is_premium']) echo 'checked'; ?>>
                             <label class="form-check-label" for="is_premium">Premium Course</label>
                         </div>
-                        <button type="submit" class="btn btn-warning fw-bold"><?php echo $editing ? 'Update' : 'Create'; ?> Course</button>
-                        <a href="courses.php" class="btn btn-secondary ms-2">Cancel</a>
+                        <div class="d-flex gap-3">
+                            <button type="submit" class="btn btn-warning btn-lg fw-bold teacher-btn">
+                                <i class="fas fa-<?php echo $editing ? 'save' : 'plus-circle'; ?> me-2"></i>
+                                <?php echo $editing ? 'Update' : 'Create'; ?> Course
+                            </button>
+                            <a href="courses.php" class="btn btn-outline-secondary btn-lg teacher-btn">
+                                <i class="fas fa-times me-2"></i>
+                                Cancel
+                            </a>
+                        </div>
                     </form>
                 </div>
             </div>
         </main>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add loading animation to form submission
+        document.querySelector('form').addEventListener('submit', function() {
+            const submitBtn = this.querySelector('button[type="submit"]');
+            submitBtn.innerHTML = '<i class="fas fa-spinner fa-spin me-2"></i>Processing...';
+            submitBtn.disabled = true;
+        });
+        
+        // Add form field animations
+        document.querySelectorAll('.form-control, .form-select').forEach(field => {
+            field.addEventListener('focus', function() {
+                this.parentElement.classList.add('field-focused');
+            });
+            
+            field.addEventListener('blur', function() {
+                if (!this.value) {
+                    this.parentElement.classList.remove('field-focused');
+                }
+            });
+        });
+
+        // Mobile sidebar toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(event.target) && !navbarToggler.contains(event.target)) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

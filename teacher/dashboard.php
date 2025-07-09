@@ -103,6 +103,9 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/text-visibility.css" rel="stylesheet">
+    <link href="../assets/css/teacher-dashboard.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top">
@@ -134,11 +137,13 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
             <nav class="col-md-3 col-lg-2 d-md-block sidebar collapse">
                 <div class="position-sticky">
                     <div class="text-center mb-4">
-                        <div>
-                            <i class="fas fa-chalkboard-teacher fa-4x text-warning"></i>
+                        <div class="teacher-avatar">
+                            <img src="https://ui-avatars.com/api/?name=<?php echo urlencode($teacher['full_name']); ?>&background=ff6b35&color=fff&size=80&font-size=0.4" class="rounded-circle w-100 h-100" alt="Teacher Avatar">
                         </div>
-                        <h6 class="text-white"><?php echo htmlspecialchars($teacher['full_name']); ?></h6>
-                        <small class="text-muted">Teacher</small>
+                        <h5 class="text-white"><?php echo htmlspecialchars($teacher['full_name']); ?></h5>
+                        <span class="badge teacher-badge-primary">
+                            <i class="fas fa-chalkboard-teacher me-1"></i>Teacher
+                        </span>
                     </div>
                     
                     <ul class="nav flex-column">
@@ -202,122 +207,149 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
             <!-- Main content -->
             <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 dashboard-main-content">
-                <!-- Welcome Section -->
-                <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-                    <h1 class="h2">Welcome back, <?php echo htmlspecialchars($teacher['full_name']); ?>!</h1>
-                    <div class="btn-toolbar mb-2 mb-md-0">
-                        <div class="btn-group me-2">
-                            <a href="create_course.php" class="btn btn-warning">
-                                <i class="fas fa-plus me-2"></i>Add Course
+                <div class="container-fluid pt-5">
+                    <!-- Teacher Hero Section -->
+                    <div class="teacher-hero mb-4">
+                    <div class="d-flex justify-content-between align-items-center">
+                        <div>
+                            <h1 class="h2 fw-bold mb-2">Welcome back, <?php echo htmlspecialchars($teacher['full_name']); ?>! 👨‍🏫</h1>
+                            <p class="mb-0 fs-5">Empower your students with knowledge and track your teaching impact.</p>
+                            <div class="mt-3">
+                                <span class="badge bg-light text-dark me-2">
+                                    <i class="fas fa-calendar-check me-1"></i><?php echo date('l, F j'); ?>
+                                </span>
+                                <span class="badge bg-light text-dark">
+                                    <i class="fas fa-clock me-1"></i><?php echo date('g:i A'); ?>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="text-end">
+                            <a href="create_course.php" class="btn btn-teacher-primary btn-lg">
+                                <i class="fas fa-plus me-2"></i>Create New Course
                             </a>
                         </div>
                     </div>
                 </div>
 
-                <!-- Statistics Cards -->
+                <!-- Teacher Statistics Cards -->
                 <div class="row mb-4">
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="stats-card">
-                            <div class="d-flex justify-content-between">
+                    <div class="col-xl-3 col-md-6 mb-4 teacher-fade-in-up" style="animation-delay: 0.1s;">
+                        <div class="teacher-stats-card">
+                            <div class="d-flex justify-content-between align-items-start">
                                 <div>
                                     <h3 data-target="<?php echo count($courses); ?>">0</h3>
                                     <p class="mb-0">My Courses</p>
+                                    <small class="text-muted">Active teaching</small>
                                 </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-book fa-2x"></i>
+                                <div class="teacher-stats-icon">
+                                    <i class="fas fa-book"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="stats-card">
-                            <div class="d-flex justify-content-between">
+                    <div class="col-xl-3 col-md-6 mb-4 teacher-fade-in-up" style="animation-delay: 0.2s;">
+                        <div class="teacher-stats-card">
+                            <div class="d-flex justify-content-between align-items-start">
                                 <div>
                                     <h3 data-target="<?php echo $totalStudents; ?>">0</h3>
                                     <p class="mb-0">Total Students</p>
+                                    <small class="text-muted">Enrolled learners</small>
                                 </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-users fa-2x"></i>
+                                <div class="teacher-stats-icon">
+                                    <i class="fas fa-users"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="stats-card">
-                            <div class="d-flex justify-content-between">
+                    <div class="col-xl-3 col-md-6 mb-4 teacher-fade-in-up" style="animation-delay: 0.3s;">
+                        <div class="teacher-stats-card">
+                            <div class="d-flex justify-content-between align-items-start">
                                 <div>
                                     <h3 data-target="<?php echo count($upcomingClasses); ?>">0</h3>
                                     <p class="mb-0">Upcoming Classes</p>
+                                    <small class="text-muted">Scheduled sessions</small>
                                 </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-video fa-2x"></i>
+                                <div class="teacher-stats-icon">
+                                    <i class="fas fa-video"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-xl-3 col-md-6 mb-4">
-                        <div class="stats-card">
-                            <div class="d-flex justify-content-between">
+                    <div class="col-xl-3 col-md-6 mb-4 teacher-fade-in-up" style="animation-delay: 0.4s;">
+                        <div class="teacher-stats-card">
+                            <div class="d-flex justify-content-between align-items-start">
                                 <div>
                                     <h3 data-target="<?php echo count($quizAttempts); ?>">0</h3>
                                     <p class="mb-0">Quiz Attempts</p>
+                                    <small class="text-muted">Student assessments</small>
                                 </div>
-                                <div class="align-self-center">
-                                    <i class="fas fa-question-circle fa-2x"></i>
+                                <div class="teacher-stats-icon">
+                                    <i class="fas fa-question-circle"></i>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
 
-                <!-- My Courses -->
+                <!-- My Courses Section -->
                 <div class="row mb-4">
                     <div class="col-12">
-                        <div class="dashboard-card">
-                            <h5 class="card-title">
-                                <i class="fas fa-book me-2"></i>My Courses
-                            </h5>
+                        <div class="teacher-form-card">
+                            <div class="d-flex justify-content-between align-items-center mb-4">
+                                <h4 class="mb-0">
+                                    <i class="fas fa-book me-2 text-warning"></i>My Courses
+                                </h4>
+                                <a href="create_course.php" class="btn btn-teacher-primary">
+                                    <i class="fas fa-plus me-2"></i>Create Course
+                                </a>
+                            </div>
+                            
                             <?php if (empty($courses)): ?>
-                                <div class="text-center py-4">
-                                    <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
-                                    <h5 class="text-muted">No courses created yet</h5>
-                                    <p class="text-muted">Start teaching by creating your first course!</p>
-                                    <a href="create_course.php" class="btn btn-warning">
-                                        <i class="fas fa-plus me-2"></i>Create Course
+                                <div class="text-center py-5">
+                                    <div class="mb-4">
+                                        <i class="fas fa-book-open fa-4x text-muted"></i>
+                                    </div>
+                                    <h4 class="text-muted mb-3">No courses created yet</h4>
+                                    <p class="text-muted mb-4">Start your teaching journey by creating your first course!</p>
+                                    <a href="create_course.php" class="btn btn-teacher-primary btn-lg">
+                                        <i class="fas fa-plus me-2"></i>Create Your First Course
                                     </a>
                                 </div>
                             <?php else: ?>
                                 <div class="row">
-                                    <?php foreach ($courses as $course): ?>
-                                        <div class="col-lg-4 col-md-6 mb-3">
-                                            <div class="card h-100">
-                                                <img src="https://img.freepik.com/free-vector/programming-concept-illustration_114360-1351.jpg" class="card-img-top" alt="<?php echo htmlspecialchars($course['title']); ?>">
+                                    <?php foreach ($courses as $index => $course): ?>
+                                        <div class="col-lg-4 col-md-6 mb-4 teacher-fade-in-up" style="animation-delay: <?php echo 0.1 + ($index * 0.1); ?>s;">
+                                            <div class="teacher-course-card">
                                                 <div class="card-body">
-                                                    <div class="d-flex justify-content-between align-items-center mb-2">
-                                                        <span class="badge <?php echo $course['is_premium'] ? 'bg-warning' : 'bg-success'; ?>">
+                                                    <div class="d-flex justify-content-between align-items-start mb-3">
+                                                        <h5 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h5>
+                                                        <span class="badge <?php echo $course['is_premium'] ? 'teacher-badge-warning' : 'teacher-badge-success'; ?>">
                                                             <?php echo $course['is_premium'] ? 'Premium' : 'Free'; ?>
                                                         </span>
-                                                        <small class="text-muted"><?php echo $course['level']; ?></small>
                                                     </div>
-                                                    <h6 class="card-title"><?php echo htmlspecialchars($course['title']); ?></h6>
-                                                    <p class="card-text small"><?php echo htmlspecialchars(substr($course['description'], 0, 100)) . '...'; ?></p>
-                                                    <div class="d-flex justify-content-between align-items-center">
-                                                        <small class="text-muted"><?php echo $course['enrollment_count']; ?> students</small>
-                                                        <span class="fw-bold text-primary">₹<?php echo number_format($course['price'], 2); ?></span>
+                                                    
+                                                    <p class="card-text"><?php echo htmlspecialchars(substr($course['description'], 0, 120)) . '...'; ?></p>
+                                                    
+                                                    <div class="teacher-course-meta">
+                                                        <span>
+                                                            <i class="fas fa-users me-1"></i>
+                                                            <?php echo $course['enrollment_count']; ?> students
+                                                        </span>
+                                                        <span class="fw-bold text-warning">
+                                                            ₹<?php echo number_format($course['price'], 2); ?>
+                                                        </span>
                                                     </div>
-                                                </div>
-                                                <div class="card-footer">
-                                                    <div class="row">
-                                                        <div class="col-6">
-                                                            <a href="edit-course.php?id=<?php echo $course['id']; ?>" class="btn btn-outline-primary btn-sm w-100">
-                                                                <i class="fas fa-edit me-1"></i>Edit
-                                                            </a>
-                                                        </div>
-                                                        <div class="col-6">
-                                                            <a href="course-students.php?id=<?php echo $course['id']; ?>" class="btn btn-outline-success btn-sm w-100">
-                                                                <i class="fas fa-users me-1"></i>Students
-                                                            </a>
-                                                        </div>
+                                                    
+                                                    <div class="teacher-course-actions">
+                                                        <a href="edit-course.php?id=<?php echo $course['id']; ?>" class="btn btn-teacher-secondary btn-sm">
+                                                            <i class="fas fa-edit me-1"></i>Edit
+                                                        </a>
+                                                        <a href="course-students.php?id=<?php echo $course['id']; ?>" class="btn btn-teacher-success btn-sm">
+                                                            <i class="fas fa-users me-1"></i>Students
+                                                        </a>
+                                                        <a href="course-details.php?id=<?php echo $course['id']; ?>" class="btn btn-outline-primary btn-sm">
+                                                            <i class="fas fa-eye me-1"></i>View
+                                                        </a>
                                                     </div>
                                                 </div>
                                             </div>
@@ -431,11 +463,88 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                         </div>
                     </div>
                 </div>
+                </div>
             </main>
         </div>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../assets/js/main.js"></script>
+    <script>
+        // Animated counters for statistics
+        function animateCounter(element, target, duration = 2000) {
+            const start = 0;
+            const increment = target / (duration / 16);
+            let current = start;
+            
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 16);
+        }
+
+        // Initialize counters when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            const counters = document.querySelectorAll('[data-target]');
+            counters.forEach(counter => {
+                const target = parseInt(counter.getAttribute('data-target'));
+                animateCounter(counter, target);
+            });
+        });
+
+        // Add loading animation to cards
+        document.addEventListener('DOMContentLoaded', function() {
+            const cards = document.querySelectorAll('.teacher-stats-card, .teacher-course-card');
+            cards.forEach((card, index) => {
+                card.style.opacity = '0';
+                card.style.transform = 'translateY(20px)';
+                
+                setTimeout(() => {
+                    card.style.transition = 'all 0.6s ease';
+                    card.style.opacity = '1';
+                    card.style.transform = 'translateY(0)';
+                }, index * 100);
+            });
+        });
+
+        // Enhanced hover effects
+        document.addEventListener('DOMContentLoaded', function() {
+            const courseCards = document.querySelectorAll('.teacher-course-card');
+            courseCards.forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(0) scale(1)';
+                });
+            });
+        });
+
+        // Mobile sidebar toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(event.target) && !navbarToggler.contains(event.target)) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

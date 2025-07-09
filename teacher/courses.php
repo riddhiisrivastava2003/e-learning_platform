@@ -34,7 +34,9 @@ $courses = $stmt->fetchAll();
     <title>My Courses - EduTech Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/teacher-dashboard.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top">
@@ -131,46 +133,157 @@ $courses = $stmt->fetchAll();
         </nav>
         <!-- Main content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 dashboard-main-content">
-            <div class="container mt-5 pt-4">
-                <h2 class="mb-4"><i class="fas fa-book me-2"></i>My Courses</h2>
-                <div class="mb-3">
-                    <a href="create_course.php" class="btn btn-warning fw-bold"><i class="fas fa-plus me-1"></i> Add Course</a>
+            <div class="container-fluid pt-5">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1><i class="fas fa-book me-3"></i>My Courses</h1>
+                            <p class="mb-0">Manage and organize your educational content</p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="teacher-stat-card">
+                                <i class="fas fa-graduation-cap fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="card p-4 mb-4">
+                
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="course-stats">
+                        <span class="badge bg-warning text-dark fs-6 px-3 py-2">
+                            <i class="fas fa-book me-2"></i><?php echo count($courses); ?> Courses
+                        </span>
+                    </div>
+                    <a href="create_course.php" class="btn btn-warning btn-lg fw-bold teacher-btn">
+                        <i class="fas fa-plus me-2"></i>Add New Course
+                    </a>
+                </div>
+                
+                <div class="teacher-content-card">
                     <?php if (empty($courses)): ?>
-                        <p class="text-muted">No courses created yet.</p>
+                        <div class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-book-open fa-4x text-muted mb-4"></i>
+                                <h3 class="text-muted mb-3">No Courses Yet</h3>
+                                <p class="text-muted mb-4">Start creating your first course to share your knowledge with students</p>
+                                <a href="create_course.php" class="btn btn-warning btn-lg teacher-btn">
+                                    <i class="fas fa-plus me-2"></i>Create Your First Course
+                                </a>
+                            </div>
+                        </div>
                     <?php else: ?>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Title</th>
-                                    <th>Description</th>
-                                    <th>Price</th>
-                                    <th>Premium</th>
-                                    <th>Created</th>
-                                    <th>Actions</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($courses as $course): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($course['title']); ?></td>
-                                    <td><?php echo htmlspecialchars(substr($course['description'], 0, 50)); ?>...</td>
-                                    <td>₹<?php echo number_format($course['price'], 2); ?></td>
-                                    <td><?php echo $course['is_premium'] ? 'Yes' : 'No'; ?></td>
-                                    <td><?php echo date('M d, Y', strtotime($course['created_at'])); ?></td>
-                                    <td>
-                                        <a href="create_course.php?id=<?php echo $course['id']; ?>" class="btn btn-sm btn-primary"><i class="fas fa-edit"></i> Edit</a>
-                                        <a href="courses.php?delete=<?php echo $course['id']; ?>" class="btn btn-sm btn-danger" onclick="return confirm('Are you sure you want to delete this course?');"><i class="fas fa-trash"></i> Delete</a>
-                                    </td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                        <div class="table-responsive">
+                            <table class="table table-hover teacher-table">
+                                <thead class="table-warning">
+                                    <tr>
+                                        <th><i class="fas fa-book me-2"></i>Title</th>
+                                        <th><i class="fas fa-align-left me-2"></i>Description</th>
+                                        <th><i class="fas fa-rupee-sign me-2"></i>Price</th>
+                                        <th><i class="fas fa-crown me-2"></i>Premium</th>
+                                        <th><i class="fas fa-calendar me-2"></i>Created</th>
+                                        <th><i class="fas fa-cogs me-2"></i>Actions</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    <?php foreach ($courses as $course): ?>
+                                    <tr class="course-row">
+                                        <td>
+                                            <div class="course-title">
+                                                <strong><?php echo htmlspecialchars($course['title']); ?></strong>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <div class="course-description">
+                                                <?php echo htmlspecialchars(substr($course['description'], 0, 60)); ?>...
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <span class="price-badge">
+                                                ₹<?php echo number_format($course['price'], 2); ?>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <?php if ($course['is_premium']): ?>
+                                                <span class="badge bg-warning text-dark">
+                                                    <i class="fas fa-crown me-1"></i>Premium
+                                                </span>
+                                            <?php else: ?>
+                                                <span class="badge bg-secondary">
+                                                    <i class="fas fa-book me-1"></i>Standard
+                                                </span>
+                                            <?php endif; ?>
+                                        </td>
+                                        <td>
+                                            <small class="text-muted">
+                                                <?php echo date('M d, Y', strtotime($course['created_at'])); ?>
+                                            </small>
+                                        </td>
+                                        <td>
+                                            <div class="btn-group" role="group">
+                                                <a href="create_course.php?id=<?php echo $course['id']; ?>" class="btn btn-sm btn-outline-primary teacher-btn">
+                                                    <i class="fas fa-edit me-1"></i>Edit
+                                                </a>
+                                                <a href="courses.php?delete=<?php echo $course['id']; ?>" class="btn btn-sm btn-outline-danger teacher-btn" 
+                                                   onclick="return confirm('Are you sure you want to delete this course? This action cannot be undone.');">
+                                                    <i class="fas fa-trash me-1"></i>Delete
+                                                </a>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <?php endforeach; ?>
+                                </tbody>
+                            </table>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>
         </main>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add hover effects to course rows
+        document.querySelectorAll('.course-row').forEach(row => {
+            row.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-2px)';
+                this.style.boxShadow = '0 8px 25px rgba(0, 0, 0, 0.15)';
+            });
+            
+            row.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = 'none';
+            });
+        });
+        
+        // Add loading animation to delete buttons
+        document.querySelectorAll('a[href*="delete"]').forEach(btn => {
+            btn.addEventListener('click', function() {
+                this.innerHTML = '<i class="fas fa-spinner fa-spin me-1"></i>Deleting...';
+                this.classList.add('disabled');
+            });
+        });
+
+        // Mobile sidebar toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(event.target) && !navbarToggler.contains(event.target)) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

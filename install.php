@@ -78,7 +78,7 @@ try {
                     file_put_contents('config/database.php', $config_content);
                     
                     // Import database schema
-                    $sql_file = file_get_contents('database_updated.sql');
+                    $sql_file = file_get_contents('database/database_updated.sql');
                     $pdo->exec($sql_file);
                     
                     // Create admin user

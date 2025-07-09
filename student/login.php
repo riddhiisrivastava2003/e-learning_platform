@@ -39,7 +39,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
         .login-container {
             min-height: 100vh;
-            background: url('../e_learning.jpg') center center/cover no-repeat;
+            background: url('../uploads/e_learning.jpg') center center/cover no-repeat;
             display: flex;
             align-items: center;
             justify-content: center;

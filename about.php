@@ -255,7 +255,7 @@ session_start();
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="card border-0 shadow text-center">
                         <div class="card-body p-4">
-                            <img src="dk.jpg" alt="CEO" class="rounded-circle mb-3 team-member" width="120" height="120" style="object-fit: cover;">
+                            <img src="uploads/dk.jpg" alt="CEO" class="rounded-circle mb-3 team-member" width="120" height="120" style="object-fit: cover;">
                             <h5>Divyanshu Khandelwal</h5>
                             <p class="text-muted">CEO & Founder</p>
                             <p class="small text-muted">10+ years of experience in educational technology and online learning platforms.</p>
@@ -265,7 +265,7 @@ session_start();
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="card border-0 shadow text-center">
                         <div class="card-body p-4">
-                            <img src="ankit.jpg" alt="CTO" class="rounded-circle mb-3 team-member" width="120" height="120" style="object-fit: cover;">
+                            <img src="uploads/ankit.jpg" alt="CTO" class="rounded-circle mb-3 team-member" width="120" height="120" style="object-fit: cover;">
                             <h5>Ankit Verma</h5>
                             <p class="text-muted">Co-Founder</p>
                             <p class="small text-muted">Driven by a passion for accessible education and community building.</p>
@@ -275,7 +275,7 @@ session_start();
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="card border-0 shadow text-center">
                         <div class="card-body p-4">
-                            <img src="ananya.jpg" alt="CDO" class="rounded-circle mb-3 team-member" width="120" height="120" style="object-fit: cover;">
+                            <img src="uploads/ananya.jpg" alt="CDO" class="rounded-circle mb-3 team-member" width="120" height="120" style="object-fit: cover;">
                             <h5>Ananya Shukla</h5>
                             <p class="text-muted">Chief Design Officer</p>
                             <p class="small text-muted">Passionate about creating intuitive and engaging user experiences.</p>
@@ -285,7 +285,7 @@ session_start();
                 <div class="col-lg-3 col-md-6 mb-4">
                     <div class="card border-0 shadow text-center">
                         <div class="card-body p-4">
-                            <img src="riddhi.jpg" alt="Co-Founder" class="rounded-circle mb-3 team-member" width="120" height="120" style="object-fit: cover;">
+                            <img src="uploads/riddhi.jpg" alt="Co-Founder" class="rounded-circle mb-3 team-member" width="120" height="120" style="object-fit: cover;">
                             <h5>Riddhi Srivastava</h5>
                             <p class="text-muted">Chief Technology Officer</p>
                             <p class="small text-muted">Expert in software development and educational technology solutions.</p>

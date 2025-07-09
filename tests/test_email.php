@@ -1,5 +1,5 @@
 <?php
-require_once 'includes/EmailService.php';
+require_once '../services/EmailService.php';
 
 $test_result = '';
 $email_sent = false;

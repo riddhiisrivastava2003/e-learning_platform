@@ -1,0 +1,495 @@
+/* Global Text Visibility Enhancements */
+/* This file ensures consistent text readability across all pages */
+
+/* Enhanced Text Visibility for All Pages */
+.dashboard-main-content h1,
+.dashboard-main-content h2,
+.dashboard-main-content h3,
+.dashboard-main-content h4,
+.dashboard-main-content h5,
+.dashboard-main-content h6,
+main h1,
+main h2,
+main h3,
+main h4,
+main h5,
+main h6,
+.container h1,
+.container h2,
+.container h3,
+.container h4,
+.container h5,
+.container h6 {
+    color: #1a252f !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    margin-bottom: 1rem;
+    letter-spacing: -0.5px;
+}
+
+/* Dashboard Hero Section Text */
+.dashboard-hero h1,
+.dashboard-hero h2,
+.dashboard-hero h3,
+.dashboard-hero h4,
+.dashboard-hero h5,
+.dashboard-hero h6 {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.5px;
+}
+
+.dashboard-hero p {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    opacity: 1 !important;
+    font-size: 1.1rem;
+}
+
+/* Text Gradient Enhancements */
+.text-gradient {
+    background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    font-weight: 800 !important;
+    position: relative;
+}
+
+.dashboard-hero .text-gradient {
+    background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: none;
+    font-weight: 800 !important;
+    position: relative;
+}
+
+/* Main Content Paragraphs */
+.dashboard-main-content p,
+main p,
+.container p {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    line-height: 1.7;
+    font-size: 1.05rem;
+}
+
+/* Card Content Visibility */
+.card .card-title,
+.card .card-text,
+.card h5,
+.card h6,
+.dashboard-card .card-title,
+.dashboard-card .card-text {
+    color: #1a252f !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.card .card-text,
+.dashboard-card .card-text {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 1rem;
+}
+
+/* Section Headers */
+.section-header h1,
+.section-header h2,
+.section-header h3,
+.section-header h4,
+.section-header h5,
+.section-header h6 {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.7);
+    letter-spacing: -0.5px;
+}
+
+/* Empty State Text */
+.empty-state h4,
+.empty-state h5 {
+    color: #1a252f !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 1.3rem;
+}
+
+.empty-state p {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 1.1rem;
+}
+
+/* Feature Cards */
+.feature-card h6 {
+    color: #1a252f !important;
+    font-weight: 800 !important;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    font-size: 1.1rem;
+}
+
+.feature-card small {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem;
+}
+
+/* Table Headers */
+.table thead th {
+    color: #ffffff !important;
+    font-weight: 600 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+/* Form Labels */
+.form-label {
+    color: #1a252f !important;
+    font-weight: 700 !important;
+    margin-bottom: 0.5rem;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    font-size: 1rem;
+}
+
+/* Alert Text */
+.alert h4,
+.alert h5,
+.alert h6 {
+    color: inherit !important;
+    font-weight: 700 !important;
+}
+
+.alert p {
+    color: inherit !important;
+    font-weight: 500 !important;
+}
+
+/* Badge Text */
+.badge {
+    font-weight: 600 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Text */
+.btn {
+    font-weight: 700 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    letter-spacing: 0.5px;
+}
+
+/* Page Headers */
+.page-header h1,
+.page-header h2,
+.page-header h3 {
+    color: #1a252f !important;
+    font-weight: 900 !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    letter-spacing: -0.5px;
+}
+
+/* Sidebar Text */
+.sidebar h5,
+.sidebar h6 {
+    color: #ffffff !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    letter-spacing: -0.3px;
+}
+
+/* Stats Cards */
+.stats-card h3 {
+    color: #ffffff !important;
+    font-weight: 900 !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+    letter-spacing: -0.5px;
+}
+
+.stats-card p {
+    color: #ffffff !important;
+    font-weight: 700 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    font-size: 1.05rem;
+}
+
+/* Modal Text */
+.modal-title {
+    color: #1a252f !important;
+    font-weight: 800 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+    letter-spacing: -0.3px;
+}
+
+.modal-body h5,
+.modal-body h6 {
+    color: #1a252f !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.modal-body p {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 1rem;
+}
+
+/* List Items */
+.list-group-item h5,
+.list-group-item h6 {
+    color: #1a252f !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.list-group-item p {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 1rem;
+}
+
+/* Navbar Brand */
+.navbar-brand {
+    font-weight: 900 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+    letter-spacing: -0.5px;
+    font-size: 1.4rem;
+}
+
+/* Responsive Text Adjustments */
+@media (max-width: 768px) {
+    .dashboard-main-content h1,
+    .dashboard-main-content h2,
+    .dashboard-main-content h3,
+    main h1,
+    main h2,
+    main h3 {
+        font-size: 1.5rem !important;
+    }
+    
+    .dashboard-hero h1,
+    .dashboard-hero h2,
+    .dashboard-hero h3 {
+        font-size: 1.8rem !important;
+    }
+}
+
+@media (max-width: 576px) {
+    .dashboard-main-content h1,
+    .dashboard-main-content h2,
+    .dashboard-main-content h3,
+    main h1,
+    main h2,
+    main h3 {
+        font-size: 1.3rem !important;
+    }
+    
+    .dashboard-hero h1,
+    .dashboard-hero h2,
+    .dashboard-hero h3 {
+        font-size: 1.5rem !important;
+    }
+}
+
+/* Additional Enhanced Text Visibility */
+/* Table Content */
+.table tbody td {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem;
+}
+
+/* Dropdown Items */
+.dropdown-item {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+    font-size: 0.95rem;
+}
+
+.dropdown-item:hover {
+    color: #1a252f !important;
+    font-weight: 700 !important;
+}
+
+/* Alert Messages */
+.alert {
+    font-weight: 600 !important;
+    font-size: 1rem;
+}
+
+.alert h4,
+.alert h5,
+.alert h6 {
+    font-weight: 800 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Progress Labels */
+.progress-label {
+    color: #1a252f !important;
+    font-weight: 700 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+/* Navigation Links */
+.nav-link {
+    font-weight: 600 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.nav-link:hover {
+    font-weight: 700 !important;
+}
+
+/* Sidebar Navigation */
+.sidebar .nav-link {
+    font-weight: 600 !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.sidebar .nav-link:hover,
+.sidebar .nav-link.active {
+    font-weight: 700 !important;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Form Controls */
+.form-control {
+    font-weight: 500 !important;
+    color: #2c3e50 !important;
+}
+
+.form-control:focus {
+    font-weight: 600 !important;
+    color: #1a252f !important;
+}
+
+/* Text Utilities */
+.text-primary {
+    color: #1a252f !important;
+    font-weight: 700 !important;
+}
+
+.text-secondary {
+    color: #2c3e50 !important;
+    font-weight: 600 !important;
+}
+
+.text-muted {
+    color: #34495e !important;
+    font-weight: 600 !important;
+}
+
+/* Display Classes */
+.display-1,
+.display-2,
+.display-3,
+.display-4,
+.display-5,
+.display-6 {
+    font-weight: 900 !important;
+    text-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
+    letter-spacing: -1px;
+}
+
+/* Lead Text */
+.lead {
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    font-size: 1.1rem;
+}
+
+/* Small Text */
+small,
+.small {
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+}
+
+/* Strong Text */
+strong,
+b {
+    font-weight: 800 !important;
+    color: #1a252f !important;
+}
+
+/* Emphasis */
+em {
+    font-weight: 700 !important;
+    color: #1a252f !important;
+}
+
+/* Code Elements */
+code {
+    font-weight: 600 !important;
+    color: #1a252f !important;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 0.2rem 0.4rem;
+    border-radius: 3px;
+}
+
+/* Pre Elements */
+pre {
+    font-weight: 600 !important;
+    color: #1a252f !important;
+    background: rgba(0, 0, 0, 0.05);
+    padding: 1rem;
+    border-radius: 5px;
+}
+
+/* Blockquote */
+blockquote {
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+    border-left: 4px solid #1a252f;
+    padding-left: 1rem;
+    margin-left: 0;
+}
+
+/* Definition Lists */
+dt {
+    font-weight: 800 !important;
+    color: #1a252f !important;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+dd {
+    font-weight: 600 !important;
+    color: #2c3e50 !important;
+}
+
+/* Horizontal Rules */
+hr {
+    border-color: rgba(26, 37, 47, 0.2);
+    border-width: 2px;
+}
+
+/* Focus States */
+*:focus {
+    outline: 2px solid #1a252f !important;
+    outline-offset: 2px;
+}
+
+/* Selection */
+::selection {
+    background: rgba(26, 37, 47, 0.2);
+    color: #1a252f;
+}
+
+/* Print Styles */
+@media print {
+    * {
+        color: #000 !important;
+        font-weight: 700 !important;
+        text-shadow: none !important;
+    }
+    
+    .dashboard-hero * {
+        color: #000 !important;
+        background: #fff !important;
+    }
+} 

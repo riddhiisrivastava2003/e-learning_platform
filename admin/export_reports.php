@@ -69,11 +69,4 @@ foreach (['students.csv','teachers.csv','courses.csv','enrollments.csv','payment
 }
 @rmdir($tmpdir);
 @unlink($zipfile);
-
-<div class="text-center mb-4">
-    <i class="fas fa-user-shield fa-2x text-primary mb-2"></i>
-    <i class="fas fa-graduation-cap fa-2x text-primary"></i>
-    <h5 class="text-white mt-2">EduTech Pro</h5>
-    <small class="text-muted">Admin Panel</small>
-</div>
 exit; 

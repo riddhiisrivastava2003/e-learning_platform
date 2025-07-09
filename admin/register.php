@@ -85,11 +85,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <title>Admin Registration - EduTech Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/admin-dashboard.css" rel="stylesheet">
     <style>
         .register-container {
             min-height: 100vh;
-            background: url('../register.jpg') no-repeat center center fixed;
+            background: url('../uploads/register.jpg') no-repeat center center fixed;
             background-size: cover;
             display: flex;
             align-items: center;

@@ -22,7 +22,9 @@ $teacher = $stmt->fetch();
     <title>Lessons - Coming Soon</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/teacher-dashboard.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top">
@@ -118,14 +120,115 @@ $teacher = $stmt->fetch();
         </div>
     </nav>
     <!-- Main content -->
-    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 dashboard-main-content d-flex align-items-center justify-content-center" style="min-height: 80vh;">
-        <div class="text-center">
-            <i class="fas fa-tools fa-4x text-warning mb-3"></i>
-            <h2 class="fw-bold">Lessons - Coming Soon</h2>
-            <p class="lead">This feature is under development. Stay tuned!</p>
+    <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 dashboard-main-content">
+        <div class="container-fluid pt-5">
+            <!-- Page Header -->
+            <div class="page-header">
+                <div class="row align-items-center">
+                    <div class="col-md-8">
+                        <h1><i class="fas fa-video me-3"></i>Lessons Management</h1>
+                        <p class="mb-0">Create and manage video lessons for your courses</p>
+                    </div>
+                    <div class="col-md-4 text-md-end">
+                        <div class="teacher-stat-card">
+                            <i class="fas fa-play-circle fa-2x text-warning"></i>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Coming Soon Content -->
+            <div class="teacher-content-card">
+                <div class="text-center py-5">
+                    <div class="coming-soon-content">
+                        <div class="coming-soon-icon mb-4">
+                            <i class="fas fa-video fa-6x text-warning"></i>
+                        </div>
+                        <h2 class="coming-soon-title mb-4">Lessons Feature Coming Soon!</h2>
+                        <p class="coming-soon-description mb-5">
+                            We're working hard to bring you a comprehensive lesson management system. 
+                            Soon you'll be able to create, upload, and organize video lessons for your courses.
+                        </p>
+                        
+                        <div class="row mb-5">
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-upload fa-2x text-warning"></i>
+                                    </div>
+                                    <h4>Video Upload</h4>
+                                    <p>Upload and manage video lessons with ease</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-list-ol fa-2x text-warning"></i>
+                                    </div>
+                                    <h4>Lesson Organization</h4>
+                                    <p>Organize lessons in a structured curriculum</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4 mb-4">
+                                <div class="feature-card">
+                                    <div class="feature-icon">
+                                        <i class="fas fa-chart-line fa-2x text-warning"></i>
+                                    </div>
+                                    <h4>Progress Tracking</h4>
+                                    <p>Track student progress through lessons</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="coming-soon-actions">
+                            <a href="dashboard.php" class="btn btn-warning btn-lg teacher-btn me-3">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Dashboard
+                            </a>
+                            <a href="courses.php" class="btn btn-outline-warning btn-lg teacher-btn">
+                                <i class="fas fa-book me-2"></i>View My Courses
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </main>
 </div>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add hover effects to feature cards
+        document.querySelectorAll('.feature-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px)';
+                this.style.boxShadow = '0 15px 35px rgba(0, 0, 0, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 5px 15px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Mobile sidebar toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(event.target) && !navbarToggler.contains(event.target)) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

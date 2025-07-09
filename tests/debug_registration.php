@@ -19,7 +19,7 @@ echo "<p><strong>PDO MySQL extension:</strong> " . (extension_loaded('pdo_mysql'
 
 // Check file permissions
 echo "<h3>File Permissions</h3>";
-echo "<p><strong>includes/EmailService.php:</strong> " . (file_exists('includes/EmailService.php') ? '✅ Exists' : '❌ Missing') . "</p>";
+echo "<p><strong>services/EmailService.php:</strong> " . (file_exists('../services/EmailService.php') ? '✅ Exists' : '❌ Missing') . "</p>";
 echo "<p><strong>config/database.php:</strong> " . (file_exists('config/database.php') ? '✅ Exists' : '❌ Missing') . "</p>";
 echo "<p><strong>logs directory writable:</strong> " . (is_writable('logs') || is_writable('.') ? '✅ Writable' : '❌ Not Writable') . "</p>";
 
@@ -41,7 +41,7 @@ try {
 // Test EmailService
 echo "<h3>Email Service Test</h3>";
 try {
-    require_once 'includes/EmailService.php';
+    require_once '../services/EmailService.php';
     echo "<p><strong>EmailService class:</strong> ✅ Loaded successfully</p>";
     
     // Test email sending (without actually sending)

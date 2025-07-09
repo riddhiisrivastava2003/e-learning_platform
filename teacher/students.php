@@ -33,7 +33,9 @@ $students = $stmt->fetchAll();
     <title>My Students - EduTech Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/teacher-dashboard.css" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar navbar-expand-lg navbar-dark bg-warning fixed-top">
@@ -130,32 +132,104 @@ $students = $stmt->fetchAll();
         </nav>
         <!-- Main content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 dashboard-main-content">
-            <div class="container mt-5 pt-4">
-                <h2 class="mb-4"><i class="fas fa-users me-2"></i>My Students</h2>
-                <div class="card p-4 mb-4">
+            <div class="container-fluid pt-5">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1><i class="fas fa-users me-3"></i>My Students</h1>
+                            <p class="mb-0">View and manage students enrolled in your courses</p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="teacher-stat-card">
+                                <i class="fas fa-user-graduate fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="d-flex justify-content-between align-items-center mb-4">
+                    <div class="student-stats">
+                        <span class="badge bg-warning text-dark fs-6 px-3 py-2">
+                            <i class="fas fa-users me-2"></i><?php echo count($students); ?> Students
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="teacher-content-card">
                     <?php if (empty($students)): ?>
-                        <p class="text-muted">No students enrolled yet.</p>
+                        <div class="text-center py-5">
+                            <div class="empty-state">
+                                <i class="fas fa-user-graduate fa-4x text-muted mb-4"></i>
+                                <h3 class="text-muted mb-3">No Students Yet</h3>
+                                <p class="text-muted mb-4">Students will appear here once they enroll in your courses</p>
+                                <a href="courses.php" class="btn btn-warning btn-lg teacher-btn">
+                                    <i class="fas fa-book me-2"></i>View My Courses
+                                </a>
+                            </div>
+                        </div>
                     <?php else: ?>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php foreach ($students as $student): ?>
-                                <tr>
-                                    <td><?php echo htmlspecialchars($student['full_name']); ?></td>
-                                    <td><?php echo htmlspecialchars($student['email']); ?></td>
-                                </tr>
-                                <?php endforeach; ?>
-                            </tbody>
-                        </table>
+                        <div class="row">
+                            <?php foreach ($students as $student): ?>
+                            <div class="col-md-6 col-lg-4 mb-4">
+                                <div class="student-card">
+                                    <div class="student-avatar">
+                                        <i class="fas fa-user-graduate fa-2x text-warning"></i>
+                                    </div>
+                                    <div class="student-info">
+                                        <h5 class="student-name"><?php echo htmlspecialchars($student['full_name']); ?></h5>
+                                        <p class="student-email"><?php echo htmlspecialchars($student['email']); ?></p>
+                                        <div class="student-status">
+                                            <span class="badge bg-success">
+                                                <i class="fas fa-check-circle me-1"></i>Enrolled
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <?php endforeach; ?>
+                        </div>
                     <?php endif; ?>
                 </div>
             </div>
         </main>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Add hover effects to student cards
+        document.querySelectorAll('.student-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.boxShadow = '0 10px 30px rgba(0, 0, 0, 0.2)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.boxShadow = '0 4px 15px rgba(0, 0, 0, 0.1)';
+            });
+        });
+
+        // Mobile sidebar toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(event.target) && !navbarToggler.contains(event.target)) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 

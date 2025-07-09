@@ -53,7 +53,8 @@ $recentPayments = $stmt->fetchAll();
     <title>Admin Dashboard - EduTech Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
-    <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/admin-dashboard.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -240,158 +241,158 @@ $recentPayments = $stmt->fetchAll();
                                 </div>
                             </div>
                         </div>
-                    </div>
 
-                    <!-- Charts Row -->
-                    <div class="row mb-4">
-                        <div class="col-lg-8">
+                        <!-- Charts Row -->
+                        <div class="row mb-4">
+                            <div class="col-lg-8">
+                                <div class="dashboard-card">
+                                    <h5 class="card-title">Enrollment Trends</h5>
+                                    <canvas id="enrollmentChart" width="400" height="200"></canvas>
+                                </div>
+                            </div>
+                            <div class="col-lg-4">
+                                <div class="dashboard-card">
+                                    <h5 class="card-title">Course Categories</h5>
+                                    <canvas id="categoryChart" width="400" height="200"></canvas>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Reports Section End -->
+
+                    <!-- Recent Activities -->
+                    <div class="row">
+                        <div class="col-lg-6">
                             <div class="dashboard-card">
-                                <h5 class="card-title">Enrollment Trends</h5>
-                                <canvas id="enrollmentChart" width="400" height="200"></canvas>
+                                <h5 class="card-title">
+                                    <i class="fas fa-user-plus me-2"></i>Recent Enrollments
+                                </h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Student</th>
+                                                <th>Course</th>
+                                                <th>Date</th>
+                                                <th>Status</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($recentEnrollments as $enrollment): ?>
+                                            <tr>
+                                                <td><?php echo htmlspecialchars($enrollment['student_name']); ?></td>
+                                                <td><?php echo htmlspecialchars($enrollment['course_title']); ?></td>
+                                                <td><?php echo date('M d, Y', strtotime($enrollment['enrolled_at'])); ?></td>
+                                                <td>
+                                                    <span class="badge bg-success">Enrolled</span>
+                                                </td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                        <div class="col-lg-4">
+                        <div class="col-lg-6">
                             <div class="dashboard-card">
-                                <h5 class="card-title">Course Categories</h5>
-                                <canvas id="categoryChart" width="400" height="200"></canvas>
+                                <h5 class="card-title">
+                                    <i class="fas fa-credit-card me-2"></i>Recent Payments
+                                </h5>
+                                <div class="table-responsive">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th>Student</th>
+                                                <th>Amount</th>
+                                                <th>Status</th>
+                                                <th>Date</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            <?php foreach ($recentPayments as $payment): ?>
+                                            <tr>
+                                                <td><?php echo htmlspecialchars($payment['student_name']); ?></td>
+                                                <td>₹<?php echo number_format($payment['amount'], 2); ?></td>
+                                                <td>
+                                                    <?php if ($payment['status'] == 'completed'): ?>
+                                                        <span class="badge bg-success">Completed</span>
+                                                    <?php elseif ($payment['status'] == 'pending'): ?>
+                                                        <span class="badge bg-warning">Pending</span>
+                                                    <?php else: ?>
+                                                        <span class="badge bg-danger">Failed</span>
+                                                    <?php endif; ?>
+                                                </td>
+                                                <td><?php echo date('M d, Y', strtotime($payment['payment_date'])); ?></td>
+                                            </tr>
+                                            <?php endforeach; ?>
+                                        </tbody>
+                                    </table>
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                <!-- Reports Section End -->
 
-                <!-- Recent Activities -->
-                <div class="row">
-                    <div class="col-lg-6">
-                        <div class="dashboard-card">
-                            <h5 class="card-title">
-                                <i class="fas fa-user-plus me-2"></i>Recent Enrollments
-                            </h5>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Student</th>
-                                            <th>Course</th>
-                                            <th>Date</th>
-                                            <th>Status</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($recentEnrollments as $enrollment): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($enrollment['student_name']); ?></td>
-                                            <td><?php echo htmlspecialchars($enrollment['course_title']); ?></td>
-                                            <td><?php echo date('M d, Y', strtotime($enrollment['enrolled_at'])); ?></td>
-                                            <td>
-                                                <span class="badge bg-success">Enrolled</span>
-                                            </td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-lg-6">
-                        <div class="dashboard-card">
-                            <h5 class="card-title">
-                                <i class="fas fa-credit-card me-2"></i>Recent Payments
-                            </h5>
-                            <div class="table-responsive">
-                                <table class="table table-hover">
-                                    <thead>
-                                        <tr>
-                                            <th>Student</th>
-                                            <th>Amount</th>
-                                            <th>Status</th>
-                                            <th>Date</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <?php foreach ($recentPayments as $payment): ?>
-                                        <tr>
-                                            <td><?php echo htmlspecialchars($payment['student_name']); ?></td>
-                                            <td>₹<?php echo number_format($payment['amount'], 2); ?></td>
-                                            <td>
-                                                <?php if ($payment['status'] == 'completed'): ?>
-                                                    <span class="badge bg-success">Completed</span>
-                                                <?php elseif ($payment['status'] == 'pending'): ?>
-                                                    <span class="badge bg-warning">Pending</span>
-                                                <?php else: ?>
-                                                    <span class="badge bg-danger">Failed</span>
-                                                <?php endif; ?>
-                                            </td>
-                                            <td><?php echo date('M d, Y', strtotime($payment['payment_date'])); ?></td>
-                                        </tr>
-                                        <?php endforeach; ?>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Quick Actions -->
-                <div class="row mt-4">
-                    <div class="col-12">
-                        <div class="dashboard-card">
-                            <h5 class="card-title">Quick Actions</h5>
-                            <div class="row g-2">
-                                <div class="col-md-3 mb-3">
-                                    <a href="users.php" class="btn btn-primary w-100">
-                                        <i class="fas fa-users me-2"></i>Manage Users
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="users.php?action=add" class="btn btn-outline-primary w-100">
-                                        <i class="fas fa-user-plus me-2"></i>Add User
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="courses.php" class="btn btn-success w-100">
-                                        <i class="fas fa-book me-2"></i>Manage Courses
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="courses.php?action=add" class="btn btn-outline-success w-100">
-                                        <i class="fas fa-plus me-2"></i>Add Course
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="enrollments.php" class="btn btn-info w-100">
-                                        <i class="fas fa-user-graduate me-2"></i>Enrollments
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="payments.php" class="btn btn-warning w-100">
-                                        <i class="fas fa-credit-card me-2"></i>Payments
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="attendance.php" class="btn btn-secondary w-100">
-                                        <i class="fas fa-calendar-check me-2"></i>Attendance
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="certificates.php" class="btn btn-light w-100">
-                                        <i class="fas fa-certificate me-2"></i>Certificates
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="reports.php" class="btn btn-dark w-100">
-                                        <i class="fas fa-chart-bar me-2"></i>Reports
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="settings.php" class="btn btn-outline-dark w-100">
-                                        <i class="fas fa-cog me-2"></i>Settings
-                                    </a>
-                                </div>
-                                <div class="col-md-3 mb-3">
-                                    <a href="profile.php" class="btn btn-outline-info w-100">
-                                        <i class="fas fa-user-cog me-2"></i>Profile
-                                    </a>
+                    <!-- Quick Actions -->
+                    <div class="row mt-4">
+                        <div class="col-12">
+                            <div class="dashboard-card">
+                                <h5 class="card-title">Quick Actions</h5>
+                                <div class="row g-2">
+                                    <div class="col-md-3 mb-3">
+                                        <a href="users.php" class="btn btn-primary w-100">
+                                            <i class="fas fa-users me-2"></i>Manage Users
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="users.php?action=add" class="btn btn-outline-primary w-100">
+                                            <i class="fas fa-user-plus me-2"></i>Add User
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="courses.php" class="btn btn-success w-100">
+                                            <i class="fas fa-book me-2"></i>Manage Courses
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="courses.php?action=add" class="btn btn-outline-success w-100">
+                                            <i class="fas fa-plus me-2"></i>Add Course
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="enrollments.php" class="btn btn-info w-100">
+                                            <i class="fas fa-user-graduate me-2"></i>Enrollments
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="payments.php" class="btn btn-warning w-100">
+                                            <i class="fas fa-credit-card me-2"></i>Payments
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="attendance.php" class="btn btn-secondary w-100">
+                                            <i class="fas fa-calendar-check me-2"></i>Attendance
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="certificates.php" class="btn btn-light w-100">
+                                            <i class="fas fa-certificate me-2"></i>Certificates
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="reports.php" class="btn btn-dark w-100">
+                                            <i class="fas fa-chart-bar me-2"></i>Reports
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="settings.php" class="btn btn-outline-dark w-100">
+                                            <i class="fas fa-cog me-2"></i>Settings
+                                        </a>
+                                    </div>
+                                    <div class="col-md-3 mb-3">
+                                        <a href="profile.php" class="btn btn-outline-info w-100">
+                                            <i class="fas fa-user-cog me-2"></i>Profile
+                                        </a>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -484,6 +485,27 @@ $recentPayments = $stmt->fetchAll();
             document.body.innerHTML = originalContents;
             location.reload();
         }
+
+        // Mobile sidebar toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(event.target) && !navbarToggler.contains(event.target)) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+        });
     </script>
 </body>
 </html> 

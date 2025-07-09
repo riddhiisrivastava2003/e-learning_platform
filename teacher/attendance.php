@@ -29,7 +29,9 @@ for ($i = 6; $i >= 0; $i--) {
     <title>Attendance - EduTech Pro</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link href="../assets/css/style.css" rel="stylesheet">
+    <link href="../assets/css/teacher-dashboard.css" rel="stylesheet">
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body>
@@ -127,12 +129,67 @@ for ($i = 6; $i >= 0; $i--) {
         </nav>
         <!-- Main content -->
         <main class="col-md-9 ms-sm-auto col-lg-10 px-md-4 dashboard-main-content">
-            <div class="container mt-5 pt-4">
-                <h2 class="mb-4"><i class="fas fa-calendar-check me-2"></i>Attendance Overview</h2>
-                <div class="card p-4 mb-4">
-                    <canvas id="attendanceChart" height="100"></canvas>
+            <div class="container-fluid pt-5">
+                <!-- Page Header -->
+                <div class="page-header">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h1><i class="fas fa-calendar-check me-3"></i>Attendance Overview</h1>
+                            <p class="mb-0">Track student attendance and engagement in your courses</p>
+                        </div>
+                        <div class="col-md-4 text-md-end">
+                            <div class="teacher-stat-card">
+                                <i class="fas fa-chart-line fa-2x text-warning"></i>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <p class="text-muted">This graph shows the number of unique students present in your courses over the last 7 days.</p>
+                
+                <!-- Attendance Stats -->
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <div class="teacher-stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-users fa-2x text-warning"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number"><?php echo array_sum($data); ?></h3>
+                                <p class="stat-label">Total Present (7 days)</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="teacher-stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-day fa-2x text-warning"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number"><?php echo round(array_sum($data) / 7, 1); ?></h3>
+                                <p class="stat-label">Daily Average</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-4">
+                        <div class="teacher-stat-card">
+                            <div class="stat-icon">
+                                <i class="fas fa-trending-up fa-2x text-warning"></i>
+                            </div>
+                            <div class="stat-content">
+                                <h3 class="stat-number"><?php echo max($data); ?></h3>
+                                <p class="stat-label">Peak Attendance</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="teacher-content-card">
+                    <div class="chart-container">
+                        <canvas id="attendanceChart" height="100"></canvas>
+                    </div>
+                    <div class="text-center mt-4">
+                        <p class="text-muted">This graph shows the number of unique students present in your courses over the last 7 days.</p>
+                    </div>
+                </div>
             </div>
             <script>
                 const ctx = document.getElementById('attendanceChart').getContext('2d');
@@ -145,24 +202,97 @@ for ($i = 6; $i >= 0; $i--) {
                             data: <?php echo json_encode($data); ?>,
                             borderColor: '#f59e42',
                             backgroundColor: 'rgba(245, 158, 66, 0.2)',
-                            tension: 0.3,
+                            borderWidth: 3,
+                            tension: 0.4,
                             fill: true,
-                            pointRadius: 5,
+                            pointRadius: 6,
                             pointBackgroundColor: '#f59e42',
+                            pointBorderColor: '#ffffff',
+                            pointBorderWidth: 2,
                         }]
                     },
                     options: {
                         responsive: true,
+                        maintainAspectRatio: false,
                         plugins: {
                             legend: { display: false },
                         },
                         scales: {
-                            y: { beginAtZero: true, ticks: { stepSize: 1 } }
+                            y: { 
+                                beginAtZero: true, 
+                                ticks: { 
+                                    stepSize: 1,
+                                    font: {
+                                        family: 'Inter',
+                                        weight: '600'
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                }
+                            },
+                            x: {
+                                ticks: {
+                                    font: {
+                                        family: 'Inter',
+                                        weight: '600'
+                                    }
+                                },
+                                grid: {
+                                    color: 'rgba(0, 0, 0, 0.1)'
+                                }
+                            }
                         }
                     }
                 });
             </script>
         </main>
     </div>
+    
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Animate stat numbers
+        function animateNumbers() {
+            document.querySelectorAll('.stat-number').forEach(element => {
+                const finalNumber = parseInt(element.textContent);
+                let currentNumber = 0;
+                const increment = finalNumber / 50;
+                
+                const timer = setInterval(() => {
+                    currentNumber += increment;
+                    if (currentNumber >= finalNumber) {
+                        element.textContent = finalNumber;
+                        clearInterval(timer);
+                    } else {
+                        element.textContent = Math.floor(currentNumber);
+                    }
+                }, 50);
+            });
+        }
+        
+        // Run animation when page loads
+        document.addEventListener('DOMContentLoaded', animateNumbers);
+
+        // Mobile sidebar toggle
+        document.addEventListener('DOMContentLoaded', function() {
+            const navbarToggler = document.querySelector('.navbar-toggler');
+            const sidebar = document.querySelector('.sidebar');
+            
+            if (navbarToggler) {
+                navbarToggler.addEventListener('click', function() {
+                    sidebar.classList.toggle('show');
+                });
+            }
+            
+            // Close sidebar when clicking outside on mobile
+            document.addEventListener('click', function(event) {
+                if (window.innerWidth <= 768) {
+                    if (!sidebar.contains(event.target) && !navbarToggler.contains(event.target)) {
+                        sidebar.classList.remove('show');
+                    }
+                }
+            });
+        });
+    </script>
 </body>
 </html> 
