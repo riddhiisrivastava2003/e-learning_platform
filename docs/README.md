@@ -11,7 +11,6 @@ A comprehensive, professional e-learning platform similar to Byju's or Simplilea
 - **Profile Management** - Complete user profiles with avatars
 
 ### 💳 Payment & Subscription
-- **Stripe Payment Gateway** - Secure payment processing for premium courses
 - **Multiple Payment Methods** - Credit cards, debit cards, digital wallets
 - **Subscription Plans** - Free and premium course tiers
 - **Payment History** - Complete transaction tracking
@@ -182,7 +181,6 @@ The platform supports multiple payment scenarios:
 
 ### Premium Courses
 - Payment required before enrollment
-- Stripe payment gateway integration
 - Multiple payment methods
 - Automatic enrollment after successful payment
 
